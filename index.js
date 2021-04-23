@@ -17,6 +17,7 @@ function generateId(date) {
 var current = start
 var idList = []
 // for (var i = 0; i < 10; i++) {
+  console.log('Count:', Math.ceil(diffDay / step))
 for (var i = 0; i < Math.ceil(diffDay / step); i++) {
   var currentStart = current
   var currentEnd = addDays(current, step)
@@ -27,9 +28,14 @@ for (var i = 0; i < Math.ceil(diffDay / step); i++) {
 // ObjectId("60827cdfc7114c00542776ac")
 // ObjectId("60827ca00000000000000000")
 idList.map(val => {
-  console.log(val.start, '-', val.end)
-  console.log(`db.getCollection('logs').find({_id: {
+  console.log('//', val.start, '-', val.end)
+  console.log(`db.getCollection('logs').remove({_id: {
     $gte: ObjectId("${val.idStart}"),
     $lt:  ObjectId("${val.idEnd}"),
-}}).count();`)
+  }})`)
 })
+
+
+
+
+
