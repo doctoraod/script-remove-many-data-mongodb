@@ -1,6 +1,6 @@
-var start = new Date("2020-02-13T00:00:00.000Z")
+var start = new Date("2020-02-01T00:00:00.000Z")
 var end = new Date("2020-06-30T00:00:00.000Z")
-var diffDay = 139
+var diffDay = 439
 var step = 5
 function addDays(date, days) {
   var result = new Date(date);
@@ -29,10 +29,14 @@ for (var i = 0; i < Math.ceil(diffDay / step); i++) {
 // ObjectId("60827ca00000000000000000")
 idList.map(val => {
   console.log('//', val.start, '-', val.end)
-  console.log(`db.getCollection('logs').remove({_id: {
+  console.log(`db.getCollection('requests').find({_id: {
     $gte: ObjectId("${val.idStart}"),
     $lt:  ObjectId("${val.idEnd}"),
-  }})`)
+  }}).count();`)
+  console.log(`db.getCollection('requests').remove({_id: {
+    $gte: ObjectId("${val.idStart}"),
+    $lt:  ObjectId("${val.idEnd}"),
+  }});`)
 })
 
 
